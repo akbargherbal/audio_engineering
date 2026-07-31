@@ -36,7 +36,16 @@ Because the terminal interface does not render Arabic RTL correctly:
 
 ---
 
-## 4. Known Audio Data Caveats
+## 4. Verification & Handoff Protocol
+
+- **No Handoff Without Execution:** Never deliver a script, notebook, or analysis as "done" unless it has actually been run end-to-end (e.g., `jupyter nbconvert --execute` for notebooks, direct execution for scripts) in this session and confirmed to complete with zero errors. Writing code that "looks correct" is not sufficient — it must be proven correct by running it.
+- **No Unverified Numbers in Explanatory Text:** Any number, claim, or result written in a summary, markdown cell, or chat explanation must be copied from real, just-generated output (printed values, plot data, logs) — never estimated, assumed, or written from memory/intuition and left unchecked. If a number is stated before the code that produces it has been run, it must be re-verified against the actual output before handoff, and corrected if it doesn't match.
+- **Out-of-Scope Work Still Gets Logged:** If work is produced outside the currently active/approved task list (a supplementary script, an extra notebook, an unplanned exploration), it must still be logged in `context.md` before the session ends — being "supplementary" is not an exemption from the Persistent Context Management rule below. Undocumented deliverables are treated as incomplete work.
+- **Traceable to Its Own Build Step:** Any generated deliverable (notebook, report, dataset) should be reproducible from a saved script/build step in its session folder — not just handed over as a final artifact with no record of how it was produced.
+
+---
+
+## 5. Known Audio Data Caveats
 
 - **Reference Track:** `data/elisa_maktooba_leek.mp3` and stems in `data/elisa_stems/`.
 - **`.srt` Timestamp Offset:** `.srt` files have a known ~3-4 second offset. NEVER trust `.srt` timestamps as absolute ground truth for sub-second audio alignment without verifying via ear or waveform onset detection first.
